@@ -97,5 +97,52 @@
   </footer>
 
   <script src="script.js"></script>
+ <!-- Login Popup -->
+<div id="loginBox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:white;padding:25px;border-radius:18px;width:100%;max-width:400px;">
+    
+    <h2 style="margin-bottom:15px;">Login to SevaSetu</h2>
+
+    <input id="loginMobile" type="tel" placeholder="Mobile Number"
+      style="width:100%;padding:12px;margin-bottom:12px;border:1px solid #ddd;border-radius:8px;">
+
+    <input id="loginPassword" type="password" placeholder="Password"
+      style="width:100%;padding:12px;margin-bottom:15px;border:1px solid #ddd;border-radius:8px;">
+
+    <button onclick="loginUser()"
+      style="width:100%;padding:12px;background:#155eef;color:white;border:0;border-radius:8px;font-weight:bold;">
+      Login
+    </button>
+
+    <button onclick="closeLogin()"
+      style="width:100%;padding:10px;margin-top:10px;background:#eee;border:0;border-radius:8px;">
+      Close
+    </button>
+
+  </div>
+</div>
+
+<script>
+function openLogin() {
+  document.getElementById("loginBox").style.display = "flex";
+}
+
+function closeLogin() {
+  document.getElementById("loginBox").style.display = "none";
+}
+
+function loginUser() {
+  var mobile = document.getElementById("loginMobile").value;
+  var password = document.getElementById("loginPassword").value;
+
+  if (mobile === "" || password === "") {
+    alert("Please enter mobile number and password.");
+    return;
+  }
+
+  alert("Login demo successful!");
+  closeLogin();
+}
+</script> 
 </body>
 </html>
