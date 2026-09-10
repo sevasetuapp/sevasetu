@@ -20,7 +20,15 @@
 <div class="modal" id="booking"><div class="box"><div class="boxhead"><h2>Service Booking</h2><button class="close" onclick="closeM('booking')">×</button></div><div class="fg"><label>Selected Service</label><input id="service" readonly></div><div class="fg"><label>Name</label><input id="bName" placeholder="Your name"></div><div class="fg"><label>Mobile Number</label><input id="bPhone" type="tel" maxlength="10" placeholder="Mobile number"></div><div class="fg"><label>PIN Code</label><input id="bPin" maxlength="6" placeholder="PIN code"></div><div class="fg"><label>Message</label><textarea id="bMsg" placeholder="What do you need?"></textarea></div><button class="btn" onclick="submitBooking()">Submit Booking</button></div></div>
 <div class="modal" id="trackModal"><div class="box"><div class="boxhead"><h2>Track Application</h2><button class="close" onclick="closeM('trackModal')">×</button></div><div class="fg"><label>Reference ID</label><input id="trackId" placeholder="Example: SS123456"></div><button class="btn" onclick="trackApplication()">Check Status</button><div id="trackResult" class="status"></div></div></div>
 <div class="modal" id="contactModal"><div class="box"><div class="boxhead"><h2>Contact SevaSetu</h2><button class="close" onclick="closeM('contactModal')">×</button></div><p style="color:#66748a">Send us your message. This form is ready for backend/email connection.</p><div class="fg"><label>Name</label><input id="cName" placeholder="Your name"></div><div class="fg"><label>Mobile / Email</label><input id="cContact" placeholder="Your contact"></div><div class="fg"><label>Message</label><textarea id="cMsg" placeholder="How can we help?"></textarea></div><button class="btn green" onclick="sendContact()">Send Message</button></div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+const SUPABASE_URL = "https://xhuddorvkoqjchnvsthp.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = sb_publishable_PSr68wqKNE2UqhC1wBmYJg_AAw4ZwVl
+
+const supabaseClient = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
 function toggleMenu(){document.getElementById('mainNav').classList.toggle('open')}function closeMenu(){document.getElementById('mainNav').classList.remove('open')}function openM(id){document.getElementById(id).classList.add('show')}function closeM(id){document.getElementById(id).classList.remove('show')}
 function validPhone(v){return /^[6-9]\d{9}$/.test(v)}
 async function login(){let email=document.getElementById('loginEmail').value.trim(),pass=document.getElementById('loginPass').value;if(!email)return alert('Please enter your email.');if(pass.length<6)return alert('Password must be at least 6 characters.');const{error}=await supabaseClient.auth.signInWithPassword({email,password:pass});if(error)return alert(error.message);alert('Login successful!');closeM('login')}
