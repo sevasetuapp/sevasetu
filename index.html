@@ -47,6 +47,8 @@ function validPin(v){return /^[1-9]\d{5}$/.test(v)}
 function makeId(prefix){return prefix+Date.now().toString().slice(-8)}
 
 async function register(){
+  alert("Register function is working");
+  
   var n=document.getElementById('regName').value.trim();
   var phone=document.getElementById('regPhone').value.trim();
   var email=document.getElementById('regEmail').value.trim().toLowerCase();
